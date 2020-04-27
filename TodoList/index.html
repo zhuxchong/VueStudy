@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head> 
+    <meta charset="UTF-8">
+    <title>TodoList</title>
+    <script src='../vue.js'></script>
+</head>
+<div id='app'>
+    <input type="text" v-model='inputValue'></input>
+    <button v-on:click="handleBtnClick">OnClick</button>
+   
+    <ul>
+        <li v-for='(i, index) in list'><button v-on:click="deleteItem(index)">delelte</button>{{i}}</li>
+    </ul>
+</div>
+<script>
+let app=new Vue(
+    {
+        el:'#app',
+        data:{
+            list:[],
+            inputValue:""
+        },
+        methods:{
+            handleBtnClick:function(){
+                this.list.push(this.inputValue)
+                this.inputValue=""
+        },
+            deleteItem:function(index){
+                let list=[...this.list]
+                list.splice(index,1)
+               // console.log(list)
+                this.list=[...list]
+            }
+        }
+    }
+)
+</script>
+</html>
